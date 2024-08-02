@@ -6,9 +6,9 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: "tickets-app"
-      MYSQL_USER: "****"
-      MYSQL_PASSWORD: "****"
-      MYSQL_ROOT_PASSWORD: "****"
+      MYSQL_USER: "draz"
+      MYSQL_PASSWORD: "drazthecoder123"
+      MYSQL_ROOT_PASSWORD: "admin123!"
     ports:
       - "3306:3306"
     expose:

@@ -1,3 +1,4 @@
+import { StatusBadge } from '@/components/status-badge'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Ticket } from '@prisma/client'
 
@@ -19,7 +20,9 @@ const DataTable = ({
                 Title
               </TableHead>
               <TableHead>
-                status
+                <div className="flex justify-center">
+                  status
+                </div>
               </TableHead>
               <TableHead>
                 priority
@@ -37,13 +40,22 @@ const DataTable = ({
                     {ticket.name}
                   </TableCell>
                   <TableCell>
-                    {ticket.status}
+                    <div className="flex justify-center">
+                      <StatusBadge status={ticket.status}/>
+                    </div>
                   </TableCell>
                   <TableCell>
                     {ticket.priority}
                   </TableCell>
                   <TableCell>
-                    {ticket.createdAt.toString()}
+                    {ticket.createdAt.toLocaleDateString("en-US", {
+                      year: '2-digit',
+                      month: '2-digit',
+                      day: "2-digit",
+                      hour: "numeric",
+                      minute: "2-digit",
+                      hour12: true,
+                    })}
                   </TableCell>
                 </TableRow>
               )) : null
