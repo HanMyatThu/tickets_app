@@ -2,6 +2,8 @@ import React from 'react'
 
 import prisma from '@/prisma/db'
 import DataTable from './datatable';
+import Link from 'next/link';
+import { buttonVariants } from '@/components/ui/button';
 
 const Tickets = async () => {
 
@@ -9,6 +11,12 @@ const Tickets = async () => {
   
   return (
     <div>
+      <Link
+        href="/tickets/new"
+        className={buttonVariants({ variant: "default" })}
+      >
+        New Ticket
+      </Link>
       <DataTable 
         tickets={tickets}
       />
