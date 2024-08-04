@@ -13,10 +13,10 @@ const priorityMap: Record<Priority, { label: string, level: 1 | 2 | 3}> = {
 
 export const PriorityBadge = ({ priority }: PriorityProps) => {
   return (
-    <>
+    <div className="flex justify-between">
       <FlameIcon className={`${priorityMap[priority].level >= 1 ? "text-red-500": "text-muted"}`} />
       <FlameIcon className={`${priorityMap[priority].level >= 2 ? "text-red-500": "text-muted"}`} />
       <FlameIcon className={`${priorityMap[priority].level >= 3 ? "text-red-500": "text-muted"}`} />
-    </>
+    </div>
   )
 }
