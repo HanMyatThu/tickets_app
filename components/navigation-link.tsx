@@ -5,33 +5,34 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
-export const NavigationLink = () => {
+interface NavigationLinkProps {
+  role?: string;
+}
+
+export const NavigationLink = ({ role }: NavigationLinkProps) => {
   const Links = [
-    { label: "Dashboard", href: "/" },
-    { label: "Tickets", href: "/tickets" },
-    { label: "Users", href: "/users" }
+    { label: "Dashboard", href: "/" , adminOnly: false},
+    { label: "Tickets", href: "/tickets", adminOnly: false },
+    { label: "Users", href: "/users", adminOnly: true },
   ];
 
-  const currentPath = usePathname()
-  console.log(currentPath,'currentPath')
-
-
+  const currentPath = usePathname();
+  
   return (
     <div className="flex items-center gap-2">
-      {
-        Links.map(link => (
-          <Link
-            key={link.label}
-            href={link.href}
-            className={cn(
-              "navbar-link",
-              currentPath === link.href && "cursor-default text-primary/70 hover:text-primary/60"
-            )}
-          >
-            {link.label}
-          </Link>
-        ))
-      }
+      {Links.filter((link) => !link.adminOnly || role === 'ADMIN').map((link) => (
+        <Link
+          key={link.label}
+          href={link.href}
+          className={cn(
+            "navbar-link",
+            currentPath === link.href &&
+              "cursor-default text-primary/70 hover:text-primary/60"
+          )}
+        >
+          {link.label}
+        </Link>
+      ))}
     </div>
-  )
-}
+  );
+};
